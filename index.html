@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Personenauswahl</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .cell {
+      border: 1px solid #333;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .active {
+      background-color: lightgreen;
+    }
+  </style>
+</head>
+<body>
+
+<div id="level0">
+  <h1>Person auswählen</h1>
+  <select id="personSelect">
+    <script>
+      for (let i = 0; i <= 12; i++) {
+        document.write(`<option value="${i}">Person ${i}</option>`);
+      }
+    </script>
+  </select>
+  <button onclick="showPerson()">Bestätigen</button>
+</div>
+
+<div id="level1" style="display:none;">
+  <h1 id="personTitle"></h1>
+  <div class="grid">
+    <script>
+      for (let i = 1; i <= 16; i++) {
+        document.write(`<div class="cell" onclick="this.classList.toggle('active')">Text ${i}</div>`);
+      }
+    </script>
+  </div>
+</div>
+
+<script>
+  function showPerson() {
+    const person = document.getElementById("personSelect").value;
+    document.getElementById("personTitle").innerText = "Person " + person;
+    document.getElementById("level0").style.display = "none";
+    document.getElementById("level1").style.display = "block";
+  }
+</script>
+
+</body>
+</html>
